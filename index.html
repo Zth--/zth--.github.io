@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>/vg/ icon searcher</title>
+
+		<style>
+			table, th {
+			  border: 1px solid black;
+			  margin-left:auto;
+			  margin-right:auto;
+			  text-align:center;
+			}
+		</style>
+	</head>
+
+
+	<div id="all" style="text-align: center;">
+		<body style="background-color:#FDFBEE">
+			<div id="div1">/vg/ icon searcher</div>
+		<input type="text" id="myInput" onkeyup="Search()" placeholder="Search for icons...">
+
+		<div id="chart" style="width: auto;height:auto;"></div>
+			<table id="results-table">
+		</table>
+	</div>
+    <script type="text/javascript">
+        var DMIS_ENDPOINT = "http://198.58.97.124:17011/dmis/";
+        var IMAGE_ENDPOINT = "http://198.58.97.124:17011/dmi/";
+        var SEARCHER_ENDPOINT = "http://198.58.97.124:17011/dmi/search/";
+
+        var search = function(val) {
+            fetch(SEARCHER_ENDPOINT + val).then(function(response) {
+                return response.json();
+            }).then(function(data) {
+				addToTable(data);
+            }).catch(function(error) {
+                console.log(error);
+        })};
+
+        var Search = function() {
+            let input, value;
+            input = document.getElementById('myInput');
+            value = input.value.toLowerCase();
+			if(value.length < 3) {
+				return;
+			}
+            search(value);
+        }
+
+		function addToTable (matches) {
+			document.getElementById('results-table').innerHTML = '';
+			let tabla   = document.getElementById("results-table")
+  			let tblBody = document.createElement("tbody");
+
+			matches.sort(function (a, b) {
+				return a["name"].toString().localeCompare(b["name"]);
+			});
+
+			matches.forEach(element => {
+				let row = document.createElement("tr");
+				let cell1 = document.createElement("td");
+				let cell2 = document.createElement("td");
+				let cell3 = document.createElement("td");
+				let text = document.createTextNode(element["name"]);
+
+				i = element["dmi"].lastIndexOf("/");
+				title = element["dmi"].slice(i + 1);
+				let dmi_title = document.createTextNode(title);
+				let dmi_link = document.createElement('a');
+				dmi_link.appendChild(dmi_title);
+				dmi_link.title = title;
+				dmi_link.href = element["dmi"];
+
+                var img = document.createElement("img");
+                img.src = IMAGE_ENDPOINT + element["name"];
+				cell1.appendChild(img)
+				cell2.appendChild(text);
+				cell3.appendChild(dmi_link);
+				row.appendChild(cell1);
+				row.appendChild(cell2);
+				row.appendChild(cell3);
+				tblBody.appendChild(row);
+			});
+			tabla.appendChild(tblBody);
+			document.getElementById("chart").appendChild(tabla);
+		}
+    </script>
+  </body>
+</html>
