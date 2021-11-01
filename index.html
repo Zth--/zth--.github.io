@@ -11,6 +11,20 @@
 			  margin-right:auto;
 			  text-align:center;
 			}
+
+			img {
+				image-rendering: pixelated;
+			}
+
+			.zoom {
+				transition: transform .2s;
+			}
+
+			.zoom:hover {
+				/*will-change: transform;*/
+				transform: scale(4);
+				backface-visibility: hidden;
+			}
 		</style>
 	</head>
 
@@ -78,6 +92,7 @@
 				dmi_link.href = element["dmi"];
 
                 var img = document.createElement("img");
+				img.classList.add("zoom");
                 img.src = IMAGE_ENDPOINT + element["name"];
 				cell1.appendChild(img)
 				cell2.appendChild(text);
