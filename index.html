@@ -17,10 +17,15 @@
 
 	<div id="all" style="text-align: center;">
 		<body style="background-color:#FDFBEE">
-			<div id="div1">/vg/ icon searcher</div>
-		<input type="text" id="myInput" onkeyup="Search()" placeholder="Search for icons...">
+			<div id="div1">
+				<img src="detective.png">
+				/vg/ icon searcher
+			</div>
+			<input type="text" id="input" onkeyup="Search()" placeholder="Search for icons...">
 
-		<div id="chart" style="width: auto;height:auto;"></div>
+		<br>
+		<img src="plasmaman_detective.png">
+		<div id="table" style="width: auto;height:auto;"></div>
 			<table id="results-table">
 		</table>
 	</div>
@@ -40,7 +45,7 @@
 
         var Search = function() {
             let input, value;
-            input = document.getElementById('myInput');
+            input = document.getElementById('input');
             value = input.value.toLowerCase();
 			if(value.length < 3) {
 				return;
@@ -83,7 +88,7 @@
 				tblBody.appendChild(row);
 			});
 			tabla.appendChild(tblBody);
-			document.getElementById("chart").appendChild(tabla);
+			document.getElementById("table").appendChild(tabla);
 		}
     </script>
   </body>
