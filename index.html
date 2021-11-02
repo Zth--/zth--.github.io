@@ -44,9 +44,10 @@
 		</table>
 	</div>
     <script type="text/javascript">
-        var DMIS_ENDPOINT = "http://198.58.97.124:17011/dmis/";
-        var IMAGE_ENDPOINT = "http://198.58.97.124:17011/dmi/";
-        var SEARCHER_ENDPOINT = "http://198.58.97.124:17011/dmi/search/";
+		var host = "https://vgutils.com.ar"
+        var DMIS_ENDPOINT = host + "/dmis/";
+        var IMAGE_ENDPOINT = host + "/dmi/";
+        var SEARCHER_ENDPOINT = host + "/dmi/search/";
 
         var search = function(val) {
             fetch(SEARCHER_ENDPOINT + val).then(function(response) {
