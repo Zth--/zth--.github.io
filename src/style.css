@@ -1,0 +1,24 @@
+#results-table, th {
+	width:100%;
+	border: 1px solid black;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: black;
+}
+
+body {
+	background-color: black;
+}
+
+img {
+	image-rendering: pixelated;
+}
+
+.zoom {
+	transition: transform .2s;
+}
+.zoom:hover {
+	/*will-change: transform;*/
+	transform: scale(4);
+	backface-visibility: hidden;
+}
