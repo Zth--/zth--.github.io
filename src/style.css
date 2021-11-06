@@ -2,8 +2,10 @@ body {
 	background-color: #FDFBEE;
 }
 
+/* dmi link */
 a {
-	color:blue;
+	color: blue;
+	cursor: pointer;
 }
 
 #results-table, th {
@@ -27,10 +29,7 @@ tr {
 	background-color: rgb(255, 255, 255);
 }
 
-/* dmi link */
-a {
-	cursor:pointer;
-}
+
 
 img {
 	cursor: crosshair;
