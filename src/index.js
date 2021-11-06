@@ -2,6 +2,7 @@ var vgbranch = "https://github.com/vgstation-coders/vgstation13/tree/Bleeding-Ed
 var host = "https://vgutils.com.ar"
 var DMIS_ENDPOINT = host + "/dmis/";
 var SEARCHER_ENDPOINT = host + "/icon/search/";
+var SEARCHER_BY_DMI_ENDPOINT = host + "/dmi/search/";
 
 let tableDiv = document.getElementById('table');
 let resultsTable = document.getElementById('results-table');
@@ -14,6 +15,16 @@ tableDiv.style.visibility = 'hidden';
 
 var search = function (val) {
 	fetch(SEARCHER_ENDPOINT + val).then(function (response) {
+		return response.json();
+	}).then(function (data) {
+		addToTable(data);
+	}).catch(function (error) {
+		console.log(error);
+	})
+}
+
+var searchByDmi = function (val) {
+	fetch(SEARCHER_BY_DMI_ENDPOINT + val).then(function (response) {
 		return response.json();
 	}).then(function (data) {
 		addToTable(data);
@@ -64,16 +75,20 @@ function addToTable(matches) {
 		let cell3 = document.createElement("td");
 		let text = document.createTextNode(element["name"]);
 
-		i = element["dmi"].lastIndexOf("/");
-		dmiFile = element["dmi"].slice(0, i) + ".dmi";
+		let i = element["dmi"].lastIndexOf("/");
+		let dmiFile = element["dmi"].slice(0, i) + ".dmi";
 		i = dmiFile.lastIndexOf("/");
-		title = dmiFile.slice(i + 1);
+		let title = dmiFile.slice(i + 1);
 
 		let dmi_title = document.createTextNode(title);
 		let dmi_link = document.createElement('a');
 		dmi_link.appendChild(dmi_title);
 		dmi_link.title = title;
-		dmi_link.href = vgbranch + dmiFile;
+		//dmi_link.href = vgbranch + dmiFile;
+		dmi_link.onclick = function() {
+			console.log(dmiFile)
+			searchByDmi(title.slice(0, -4))
+		};
 
 		var img = document.createElement("img");
 		img.classList.add("zoom");

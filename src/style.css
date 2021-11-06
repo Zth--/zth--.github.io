@@ -2,6 +2,10 @@ body {
 	background-color: #FDFBEE;
 }
 
+a {
+	color:blue;
+}
+
 #results-table, th {
 	width: auto;
 	height: auto;
@@ -30,7 +34,7 @@ img {
 .tip {
 	font-family: Georgia, 'Times New Roman', Times, serif;
 	background-color: greenyellow;
-	width: 300px;
+	width: 350px;
 	margin-left: auto;
 	margin-right: auto;
 }
