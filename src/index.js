@@ -67,12 +67,15 @@ function addToTable(matches) {
 		let text = document.createTextNode(element["name"]);
 
 		i = element["dmi"].lastIndexOf("/");
-		title = element["dmi"].slice(i + 1);
+		dmiFile = element["dmi"].slice(0, i) + ".dmi";
+		i = dmiFile.lastIndexOf("/");
+		title = dmiFile.slice(i + 1);
+
 		let dmi_title = document.createTextNode(title);
 		let dmi_link = document.createElement('a');
 		dmi_link.appendChild(dmi_title);
 		dmi_link.title = title;
-		dmi_link.href = vgbranch + element["dmi"] + ".dmi";
+		dmi_link.href = vgbranch + dmiFile;
 
 		var img = document.createElement("img");
 		img.classList.add("zoom");

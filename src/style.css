@@ -23,9 +23,16 @@ tr {
 	background-color: rgb(255, 255, 255);
 }
 
-
 img {
 	image-rendering: pixelated;
+}
+
+.tip {
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	background-color: greenyellow;
+	width: 300px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .zoom {
