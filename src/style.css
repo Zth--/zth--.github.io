@@ -27,7 +27,13 @@ tr {
 	background-color: rgb(255, 255, 255);
 }
 
+/* dmi link */
+a {
+	cursor:pointer;
+}
+
 img {
+	cursor: crosshair;
 	image-rendering: pixelated;
 }
 
