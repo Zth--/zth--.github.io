@@ -4,25 +4,29 @@ var DMIS_ENDPOINT = host + "/dmis/";
 var IMAGE_ENDPOINT = host + "/dmi/";
 var SEARCHER_ENDPOINT = host + "/dmi/search/";
 
+
+let tableDiv = document.getElementById('table');
+let resultsTable = document.getElementById('results-table');
+let noMatchesIndicator = document.getElementById('no-matches-indicator');
+
+//setting this to hidden when the script is loaded so we can show it 
+//when we have matches and not when we dont
+resultsTable.style.visibility = 'hidden';
+tableDiv.style.visibility = 'hidden';
+
 var search = function (val) {
 	fetch(SEARCHER_ENDPOINT + val).then(function (response) {
 		return response.json();
-	}
-
-	).then(function (data) {
+	}).then(function (data) {
 		addToTable(data);
-	}
-
-	).catch(function (error) {
+	}).catch(function (error) {
 		console.log(error);
-	}
-
-	)
+	})
 }
 
 document.getElementById("input").onkeyup = function () {
-	let input,
-		value;
+	let input, value;
+
 	input = document.getElementById('input');
 	value = input.value.toLowerCase();
 
@@ -34,9 +38,22 @@ document.getElementById("input").onkeyup = function () {
 }
 
 function addToTable(matches) {
-	document.getElementById('results-table').innerHTML = '';
-	let tabla = document.getElementById("results-table");
+	resultsTable.innerHTML = '';
 	let tblBody = document.createElement("tbody");
+
+
+	if (matches == null) {
+		noMatchesIndicator.innerHTML = 'No icons found.';
+		resultsTable.style.visibility = 'hidden';
+		tableDiv.style.visibility = 'hidden';
+		return;
+	}
+	else if (Array.isArray(matches) && matches.length > 0) {
+		noMatchesIndicator.innerHTML = '';
+		resultsTable.style.visibility = 'unset';
+		tableDiv.style.visibility = 'unset';
+	}
+
 
 	matches.sort(function (a, b) {
 		return a["name"].toString().localeCompare(b["name"]);
@@ -69,6 +86,8 @@ function addToTable(matches) {
 		tblBody.appendChild(row);
 	});
 
-	tabla.appendChild(tblBody);
-	document.getElementById("table").appendChild(tabla);
+
+	resultsTable.appendChild(tblBody);
+	document.getElementById("table").appendChild(resultsTable);
 }
+

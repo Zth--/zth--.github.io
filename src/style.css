@@ -1,14 +1,28 @@
-#results-table, th {
-	width:100%;
-	border: 1px solid black;
-	margin-left: auto;
-	margin-right: auto;
-	background-color: black;
+body {
+	background-color: #FDFBEE;
 }
 
-body {
-	background-color: black;
+#results-table, th {
+	width: auto;
+	height: auto;
+	border: 1px solid black;
+	background-color: #ffffff;
+	border-radius: 8px;
+  	margin-left: auto;
+  	margin-right: auto;
 }
+
+#no-matches-indicator {
+	color: red;
+}
+
+/* each element in the result table */
+tr {
+	font-family: arial;
+	font-weight: bold;
+	background-color: rgb(255, 255, 255);
+}
+
 
 img {
 	image-rendering: pixelated;

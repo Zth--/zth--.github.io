@@ -2,20 +2,25 @@
 <html>
 
 <head>
-	<link rel=“stylesheet” href='src/style.css' />
+	<link rel="stylesheet" href="src/style.css" />
 	<title>/vg/ icon searcher</title>
 </head>
 
-<div id="all" style="text-align: center;">
+<body>
+	<div id="all" style="text-align: center;">
+		<h1 id="div1" style="margin-bottom:6px; font-family:Arial, Helvetica, sans-serif; font-size: 27px;"><img
+				src="detective.png">/vg/ icon searcher
+		</h1>
+		<input type="text" id="input" placeholder="Search for icons..." style="border-radius: 4px;"></input>
+		<br><img src="chicken_white-dir3.png" style="margin: 6px;"></br>
+		<div id="no-matches-indicator"></div>
 
-	<body>
-		<div id="div1"><img src="detective.png">/vg/ icon searcher </div>
-		<input type="text" id="input" placeholder="Search for icons..."></input>
-		<br><img src="plasmaman_detective.png">
-		<div id="table" style="width: auto;height:auto;"></div>
+		<div id="table" style="width: auto;height:auto;">
+			<div type="text" style="font-family:Georgia, 'Times New Roman', Times, serif;">TIP: Hover over icons to
+				enlarge them.</div>
+		</div>
 		<table id="results-table"></table>
-	</body>
-</div>
+	</div>
 </body>
 <script type="text/javascript" src="src/index.js"></script>
 
