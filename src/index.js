@@ -1,9 +1,7 @@
 var vgbranch = "https://github.com/vgstation-coders/vgstation13/tree/Bleeding-Edge/"
 var host = "https://vgutils.com.ar"
 var DMIS_ENDPOINT = host + "/dmis/";
-var IMAGE_ENDPOINT = host + "/dmi/";
-var SEARCHER_ENDPOINT = host + "/dmi/search/";
-
+var SEARCHER_ENDPOINT = host + "/icon/search/";
 
 let tableDiv = document.getElementById('table');
 let resultsTable = document.getElementById('results-table');
