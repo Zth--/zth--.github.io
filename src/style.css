@@ -11,7 +11,7 @@ body {
     margin: 0;
 
     background: no-repeat center center fixed; 
-	transform: scale(1.5);
+	  transform: scale(1.5);
     background-size: cover;
     z-index: -20;
     filter: brightness(60%) blur(8px) ;
@@ -19,7 +19,8 @@ body {
 
 /* dmi link */
 a {
-	color:blue;
+	color: blue;
+	cursor: pointer;
 }
 
 #results-table, th {
@@ -50,6 +51,7 @@ tr {
 }
 
 img {
+	cursor: crosshair;
 	image-rendering: pixelated;
 }
 
