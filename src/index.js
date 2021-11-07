@@ -106,17 +106,22 @@ function addToTable(matches) {
 
 		img.src = "assets/" + element["dmi"];
 
-		let imgW, imgH;
-		imgW = img.width;
-		imgH = img.height;
-		text.appendData(` (${imgW}x${imgH})`);
-		/*to prevent zoom from engulfing the entire table
-		or window because of trying to zoom a large icon
+		img.onload = function(){
+			let imgW, imgH;
+			imgW = img.width;
+			imgH = img.height;
+			text.appendData(` (${imgW}x${imgH})`);
+			/*to prevent zoom from engulfing the entire table
+			or window because of trying to zoom a large icon
+			we only add it to images with a w+h smaller than 
 		we only add it to images with a w+h smaller than 
-		the threshold*/
-		if (imgW + imgH < iconDimensionZoomThreshold) {
-			img.classList.add("zoom");
+			we only add it to images with a w+h smaller than 
+			the threshold*/
+			if (imgW + imgH < iconDimensionZoomThreshold) {
+				img.classList.add("zoom");
+			}
 		}
+
 		cell1.appendChild(img);
 		cell2.appendChild(text);
 		cell3.appendChild(dmi_link);
