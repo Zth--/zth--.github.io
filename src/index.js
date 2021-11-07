@@ -8,10 +8,20 @@ let tableDiv = document.getElementById('table');
 let resultsTable = document.getElementById('results-table');
 let noMatchesIndicator = document.getElementById('no-matches-indicator');
 
-//setting this to hidden when the script is loaded so we can show it 
-//when we have matches and not when we dont
-resultsTable.style.visibility = 'hidden';
-tableDiv.style.visibility = 'hidden';
+
+window.onload = function () {
+	//setting this to hidden when the script is loaded so we can show it 
+	//when we have matches and not when we dont
+	resultsTable.style.visibility = 'hidden';
+	tableDiv.style.visibility = 'hidden';
+
+	//randomly select a bg image. yeah we just sorta use a magic number 
+	//since the number of bg images is static
+	let randomIndex = Math.trunc(Math.random() * 3);
+	let backplate = document.getElementById("bg");
+	backplate.style.backgroundImage = `url('../bg/${randomIndex}.jpg')`;
+
+}
 
 var search = function (val) {
 	fetch(SEARCHER_ENDPOINT + val).then(function (response) {
@@ -85,7 +95,7 @@ function addToTable(matches) {
 		dmi_link.appendChild(dmi_title);
 		dmi_link.title = title;
 		//dmi_link.href = vgbranch + dmiFile;
-		dmi_link.onclick = function() {
+		dmi_link.onclick = function () {
 			console.log(dmiFile)
 			searchByDmi(title.slice(0, -4))
 		};
