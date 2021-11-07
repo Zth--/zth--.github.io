@@ -3,6 +3,8 @@ var host = "https://vgutils.com.ar"
 var DMIS_ENDPOINT = host + "/dmis/";
 var SEARCHER_ENDPOINT = host + "/icon/search/";
 var SEARCHER_BY_DMI_ENDPOINT = host + "/dmi/search/";
+const numBgImages = 3;
+const iconDimensionZoomThreshold = 300; //the cutoff where we dont give an icon the zoom function because its already big. (width + height)
 
 let tableDiv = document.getElementById('table');
 let resultsTable = document.getElementById('results-table');
@@ -15,9 +17,9 @@ window.onload = function () {
 	resultsTable.style.visibility = 'hidden';
 	tableDiv.style.visibility = 'hidden';
 
-	//randomly select a bg image. yeah we just sorta use a magic number 
-	//since the number of bg images is static
-	let randomIndex = Math.trunc(Math.random() * 3);
+	//randomly select a bg image. 
+	//the number of bg images is static const.
+	let randomIndex = Math.trunc(Math.random() * numBgImages);
 	let backplate = document.getElementById("bg");
 	backplate.style.backgroundImage = `url('../bg/${randomIndex}.jpg')`;
 
@@ -101,8 +103,20 @@ function addToTable(matches) {
 		};
 
 		var img = document.createElement("img");
-		img.classList.add("zoom");
+
 		img.src = "assets/" + element["dmi"];
+
+		let imgW, imgH;
+		imgW = img.width;
+		imgH = img.height;
+		text.appendData(` (${imgW}x${imgH})`);
+		/*to prevent zoom from engulfing the entire table
+		or window because of trying to zoom a large icon
+		we only add it to images with a w+h smaller than 
+		the threshold*/
+		if (imgW + imgH < iconDimensionZoomThreshold) {
+			img.classList.add("zoom");
+		}
 		cell1.appendChild(img);
 		cell2.appendChild(text);
 		cell3.appendChild(dmi_link);
