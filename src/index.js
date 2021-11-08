@@ -3,7 +3,7 @@ var host = "https://vgutils.com.ar"
 var DMIS_ENDPOINT = host + "/dmis/";
 var SEARCHER_ENDPOINT = host + "/icon/search/";
 var SEARCHER_BY_DMI_ENDPOINT = host + "/dmi/search/";
-const numBgImages = 3;
+const numBgImages = 4;
 const iconDimensionZoomThreshold = 300; //the cutoff where we dont give an icon the zoom function because its already big. (width + height)
 
 let tableDiv = document.getElementById('table');
@@ -106,7 +106,7 @@ function addToTable(matches) {
 
 		img.src = "assets/" + element["dmi"];
 
-		img.onload = function(){
+		img.onload = function () {
 			let imgW, imgH;
 			imgW = img.width;
 			imgH = img.height;
@@ -114,7 +114,7 @@ function addToTable(matches) {
 			/*to prevent zoom from engulfing the entire table
 			or window because of trying to zoom a large icon
 			we only add it to images with a w+h smaller than 
-		we only add it to images with a w+h smaller than 
+			we only add it to images with a w+h smaller than 
 			we only add it to images with a w+h smaller than 
 			the threshold*/
 			if (imgW + imgH < iconDimensionZoomThreshold) {
