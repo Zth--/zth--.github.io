@@ -69,6 +69,12 @@ img {
 	padding: 2px;
 }
 
+.path {
+	font-size: x-small;
+	word-break: break-word;
+	width: 150px;
+}
+
 .zoom {
 	transition: transform .2s;
 	cursor: crosshair;

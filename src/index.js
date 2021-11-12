@@ -85,27 +85,33 @@ function addToTable(matches) {
 		let cell1 = document.createElement("td");
 		let cell2 = document.createElement("td");
 		let cell3 = document.createElement("td");
+		let cell4 = document.createElement("td");
 		let text = document.createTextNode(element["name"]);
 
+		//cell 1
 		let i = element["dmi"].lastIndexOf("/");
 		let dmiFile = element["dmi"].slice(0, i) + ".dmi";
 		i = dmiFile.lastIndexOf("/");
 		let title = dmiFile.slice(i + 1);
 
+		//cell 2
 		let dmi_title = document.createTextNode(title);
 		let dmi_link = document.createElement('a');
 		dmi_link.appendChild(dmi_title);
 		dmi_link.title = title;
-		//dmi_link.href = vgbranch + dmiFile;
 		dmi_link.onclick = function () {
 			console.log(dmiFile)
 			searchByDmi(title.slice(0, -4))
 		};
 
+		//cell 3
+		let pathText = document.createElement("div");
+		pathText.classList.add("path");
+		pathText.textContent = dmiFile;
+
+		//cell 4
 		var img = document.createElement("img");
-
 		img.src = "assets/" + element["dmi"];
-
 		img.onload = function () {
 			let imgW, imgH;
 			imgW = img.width;
@@ -113,8 +119,6 @@ function addToTable(matches) {
 			text.appendData(` (${imgW}x${imgH})`);
 			/*to prevent zoom from engulfing the entire table
 			or window because of trying to zoom a large icon
-			we only add it to images with a w+h smaller than 
-			we only add it to images with a w+h smaller than 
 			we only add it to images with a w+h smaller than 
 			the threshold*/
 			if (imgW + imgH < iconDimensionZoomThreshold) {
@@ -124,10 +128,12 @@ function addToTable(matches) {
 
 		cell1.appendChild(img);
 		cell2.appendChild(text);
-		cell3.appendChild(dmi_link);
+		cell3.appendChild(pathText);
+		cell4.appendChild(dmi_link);
 		row.appendChild(cell1);
 		row.appendChild(cell2);
 		row.appendChild(cell3);
+		row.appendChild(cell4);
 		tblBody.appendChild(row);
 	});
 
